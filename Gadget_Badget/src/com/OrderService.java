@@ -30,12 +30,13 @@ public class OrderService {
 	@Path("/") 
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
 	@Produces(MediaType.TEXT_PLAIN) 
-	public String insertOrder(@FormParam("Project_ID") String project_id, 
+	public String insertOrder(@FormParam("Order_date") String order_date,
+	 @FormParam("Project_ID") String project_id, 
 	 @FormParam("Project_name") String project_name,
 	 @FormParam("Sponsor") String sponsor,
 	 @FormParam("Budget") String budget) 
 	{ 
-	 String output = orderObj.insertOrder( project_id, project_name, sponsor, budget); 
+	 String output = orderObj.insertOrder( order_date, project_id, project_name, sponsor, budget); 
 	return output; 
 	}
 	
@@ -49,12 +50,14 @@ public class OrderService {
 	//Convert the input string to a JSON object 
 	 JsonObject orderObject = new JsonParser().parse(orderData).getAsJsonObject(); 
 	//Read the values from the JSON object
-	 String orderID = orderObject.get("Order_ID").getAsString(); 
+	 String orderID = orderObject.get("Order_ID").getAsString();
+	 String order_date = orderObject.get("Order_date").getAsString();
 	 String project_id = orderObject.get("Project_ID").getAsString(); 
 	 String project_name = orderObject.get("Project_name").getAsString(); 
 	 String sponsor = orderObject.get("Sponsor").getAsString();
-	 String budget = orderObject.get("Budget").getAsString(); 
-	 String output = orderObj.updateOrder( orderID, project_id, project_name, sponsor, budget); 
+	 String budget = orderObject.get("Budget").getAsString();
+	 
+	 String output = orderObj.updateOrder( orderID, order_date, project_id, project_name, sponsor, budget); 
 	return output; 
 	}
 	
@@ -68,7 +71,7 @@ public class OrderService {
 	//Convert the input string to an XML document
 	 Document doc = Jsoup.parse(orderData, "", Parser.xmlParser()); 
 	 
-	//Read the value from the element <itemID>
+	//Read the value from the element <orderID>
 	 String orderID = doc.select("Order_ID").text(); 
 	 String output = orderObj.deleteOrder( orderID); 
 	return output; 
