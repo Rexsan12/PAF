@@ -20,6 +20,7 @@ public class ProjectService {
 	Project itemObj = new Project(); 
 
 	
+	
 	@GET
 	@Path("/") 
 	@Produces(MediaType.TEXT_HTML) 
@@ -27,6 +28,7 @@ public class ProjectService {
 	 { 
 	 return itemObj.readProducts(); 
 	 }
+
 	
 	
 	
@@ -45,6 +47,7 @@ public class ProjectService {
 		  String output = itemObj.insertProduct(project_code, project_category, project_name, project_descrip, project_price, no_of_projects);
 		 return output;
 	     }
+	
 	
 	 
 	 
@@ -70,6 +73,7 @@ public class ProjectService {
 		  return output;
 	 }
 	 
+	
 	 
 	 
 	 
