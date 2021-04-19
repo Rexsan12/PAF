@@ -15,13 +15,10 @@
  		<url-pattern>/ProjectService/*</url-pattern>
  		<url-pattern>/OrderService/*</url-pattern>
  		<url-pattern>/ResearcherService/*</url-pattern>
+ 		<url-pattern>/SponsorService/*</url-pattern>
  		
   </servlet-mapping>
   
-  
-  
-  
- 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
