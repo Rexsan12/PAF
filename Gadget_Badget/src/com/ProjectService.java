@@ -19,7 +19,7 @@ public class ProjectService {
 	
 	Project itemObj = new Project(); 
 
-	
+	//for reading the projects
 	
 	@GET
 	@Path("/") 
@@ -30,7 +30,7 @@ public class ProjectService {
 	 }
 
 	
-	
+	//for inserting projects
 	
 	 @POST
 	 @Path("/")
@@ -45,11 +45,11 @@ public class ProjectService {
 		
 		 {
 		  String output = itemObj.insertProduct(project_code, project_category, project_name, project_descrip, project_price, no_of_projects);
-		 return output;
+		  return output;
 	     }
 	
 	
-	 
+	//for updating projects
 	 
 	 @PUT
 	 @Path("/")
@@ -57,6 +57,7 @@ public class ProjectService {
 	 @Produces(MediaType.TEXT_PLAIN)
 	 public String updateProduct(String projectData)
 	 {
+		 
 		 //Convert the input string to a JSON object
 		  JsonObject projectObject = new JsonParser().parse(projectData).getAsJsonObject();
 		  
@@ -75,7 +76,7 @@ public class ProjectService {
 	 
 	
 	 
-	 
+	 //for deleting projects
 	 
 	 @DELETE
 	 @Path("/") 
@@ -83,11 +84,12 @@ public class ProjectService {
 	 @Produces(MediaType.TEXT_PLAIN) 
 	 public String deleteProduct(String projectData) 
 	 { 
+		 
 	 //Convert the input string to an XML document
 	  Document doc = Jsoup.parse(projectData, "", Parser.xmlParser()); 
 	  
 	 //Read the value from the element <project_Id>
-	  String project_Id = doc.select("project_Id").text(); 
+	  String project_Id = doc.select("project_Id").text();
 	  String output = itemObj.deleteProduct(project_Id); 
 	  return output; 
 	 }

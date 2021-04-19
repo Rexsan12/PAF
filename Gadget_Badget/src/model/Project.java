@@ -12,21 +12,20 @@ public class Project {
 	String pro_price;
 	String pro_count;
 	
-	
-	public Connection connect()
+	// A common method to connect with the database.
+    public Connection connect() { 
 
-	{ 
 	 Connection con = null;
 
 	 try
 	 		{
 		 	Class.forName("com.mysql.jdbc.Driver");
 	 
+		 	//Provide the correct details: DBServer/DBName, username, password 
 		 	con= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/gadgetbadget","root", "");
 	 
-		 	//For testing
-		 	
-		 	System.out.print("Successfully connected");
+		 	//For testing	
+		 	System.out.print("DB Successfully connected");
 	 		}
 	 
 	 	catch(Exception e)
@@ -35,23 +34,23 @@ public class Project {
 	 	}
 
 	 return con;
-
 	 
 	}
 
 
-	public String insertProduct(String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
+public String insertProduct(String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
 		
 		String output = ""; 
 		
-		try {
+		try
+		     {
 		
 				Connection con = connect();
 				
 				if (con == null)
 					
 				{
-					return "Error while connecting to the database";
+					return "Error while connecting to the database for inserting";
 				}
 		
 		
@@ -77,8 +76,8 @@ public class Project {
 				preparedStmt.execute();
 				con.close();
 				
-				output = "Projects Inserted successfully";
-		 }
+				output = "Project details inserted successfully";
+		   }
 		
 		catch (Exception e)
 		
@@ -93,14 +92,13 @@ public class Project {
 	    } 
 
 
-	public String readProducts()
-	{
-	 
-			String output = "";
+public String readProducts() {
+ 
+	   String output = "";
 			
-			try
-			{
-				
+	   try 	
+	        {
+	
 				Connection con = connect();
 				
 				if (con == null)		
@@ -125,8 +123,7 @@ public class Project {
 	 	ResultSet rs = stmt.executeQuery(query); 
 	 	
 	 // iterate through the rows in the result set
-	 	
-	 
+	
 	 	while (rs.next())
 	 
 	 	{
@@ -149,8 +146,8 @@ public class Project {
 	 		output += "<td>" + project_descrip + "</td>";
 	 		output += "<td>" + project_price + "</td>";
 	 		output += "<td>" + no_of_projects + "</td>";
-	 // buttons
 	 		
+	 // buttons 		
 	   output
 			  += "<td><input name='btnUpdate' "
 			  + " type='button' value='Update' class='btn btn-secondary' </td>"
@@ -161,17 +158,18 @@ public class Project {
 	 
 	 }	 	
 		 	
-	 con.close();
+	 con.close(); 
+	
 	 
 	 // Complete the html table
-	 
-	       output += "</table>";
-	 }
+	       output += "</table>";	       
+	       }
+	   
 	catch (Exception e)
 	 {
-	 output = "Error while reading the products.";
+	     output = "Error while reading the projects.";
 	 
-	 System.err.println(e.getMessage());
+	     System.err.println(e.getMessage());
 	 }
 			
 	return output;
@@ -179,22 +177,21 @@ public class Project {
 	}
 
 
-	public String deleteProduct(String project_Id)
+public String deleteProduct(String project_Id) {
 
-		{
-			String output = "";
+	   String output = "";
 
 			try
-			{
+			   {
 				
 				Connection con = connect();
 				
 				if (con == null)
 					
-			{
+			    {
 					
 					return "Error while connecting to the database for deleting.";
-			}
+			    }
 				
 	 // create a prepared statement
 				
@@ -210,8 +207,8 @@ public class Project {
 				preparedStmt.execute();
 				con.close();
 				
-				output = "Deleted successfully";
-			}
+				output = "Project details have been deleted Successfully";
+			  }
 			
 			catch (Exception e)
 			{
@@ -228,13 +225,16 @@ public class Project {
 public String updateProduct(String pro_Id, String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
 	
 	String output = "";
-	try
-		 {
-		 Connection con = connect();
+	  
+	  try
+		  {
+		  
+		    Connection con = connect();
+		 
 		 if (con == null)
-		 {
-			 return "Error while connecting to the database";
-		 }
+		   {
+			 return "Error while connecting to the database for updating.";
+		   }
 		 
 		// create a prepared statement
 		 String query = "UPDATE products SET project_code=?,project_category=?,project_name=?,project_descrip=?,project_price=?,no_of_projects=? WHERE project_Id=?"; 
@@ -254,14 +254,16 @@ public String updateProduct(String pro_Id, String pro_code, String pro_category,
 		 //execute the statement
 		 preparedStmt.execute();
 		 con.close();
-		 output = "Updated successfully";
+		 output = "Project details have been updated successfully";
 		 
-		 }
+		   }
+	  
 	catch (Exception e)
 	 {
-	 output = "Error while updating the project.";
-	 System.err.println(e.getMessage());
+	     output = "Error while updating the project.";
+	     System.err.println(e.getMessage());
 	 }
+	
 	return output;
 }
 	
