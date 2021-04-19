@@ -15,11 +15,16 @@
  		<url-pattern>/ProjectService/*</url-pattern>
  		
   </servlet-mapping>
+  
   <servlet-mapping>
  	<servlet-name>Jersey Web Application</servlet-name>
  	<url-pattern>/OrderService/*</url-pattern>
   </servlet-mapping>
   
+  <servlet-mapping>
+		<servlet-name>Jersey Web Application3</servlet-name>
+		<url-pattern>/ResearcherService/*</url-pattern>
+	</servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
