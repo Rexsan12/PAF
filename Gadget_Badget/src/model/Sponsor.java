@@ -34,7 +34,7 @@ public class Sponsor {
 
 	// ********************************************************insert*********************************************************************************
 	 
-	public String insertItem(String fname, String lname, String company, String job, String phone, String mail, String city) { 
+	public String insertSponsorDetails(String fname, String lname, String company, String job, String phone, String mail, String city) { 
 		
 		String output = ""; 
 	 
@@ -62,11 +62,11 @@ public class Sponsor {
 			preparedStmt.execute(); 
 			con.close(); 
 	 
-			output = "Inserted successfully"; 
+			output = "Sponsor Details successfully added"; 
 		} 
 		catch (Exception e) 
 		{ 
-			output = "Error while inserting the item."; 
+			output = "Error while inserting the Sponsor Details."; 
 			System.err.println(e.getMessage()); 
 		} 
 		return output; 
@@ -84,7 +84,7 @@ public class Sponsor {
 	
 //*************************************************************read***************************************************************************************
 	
-	public String readItems() 
+	public String readSponsorDetails() 
 	 { 
 		String output = ""; 
 		
@@ -131,12 +131,14 @@ public class Sponsor {
 				output += "<td>" + phone + "</td>"; 
 				output += "<td>" + mail + "</td>"; 
 				output += "<td>" + city + "</td>"; 
-	 
-	 // buttons
-				output += "<td><input name='btnUpdate' type='button' value='Update' class='btn btn-secondary'></td>"
-						+ "<td><form method='post' action='index.jsp'>"
-						+ "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>"
-						+ "<input name='buyer' type='hidden' value=' "+ buyer_id+ "\"> </form></td></tr>"; 
+				 // buttons 		
+				   output
+						  += "<td><input name='btnUpdate' "
+						  + " type='button' value='Update' class='btn btn-secondary' </td>"
+				 		  + "<td><form method='post' action='Products.jsp'>"
+				 		  + "<input name='btnRemove' " + " type='submit' value='Remove' class='btn btn-danger'>"
+				 		  + "<input name='buyer' type='hidden' " + " value='" + buyer_id + "'>" + "</form></td></tr>";
+				 		 
 			} 
 			
 	 con.close(); 
@@ -146,7 +148,7 @@ public class Sponsor {
 	 } 
 	 catch (Exception e) 
 	 { 
-		 output = "Error while reading the items."; 
+		 output = "Error while reading the Sponsor Details."; 
 		 System.err.println(e.getMessage()); 
 	 } 
 	 return output; 
@@ -165,7 +167,7 @@ public class Sponsor {
 	
 //************************************************************update********************************************************************************************
 	
-	public String updateItem(String ID, String fname, String lname, String company, String job, String phone, String mail, String city)
+	public String updateSponsorDetails(String ID, String fname, String lname, String company, String job, String phone, String mail, String city)
 	 {
 		
 	 String output = "";
@@ -194,12 +196,12 @@ public class Sponsor {
 		 preparedStmt.execute();
 		 con.close();
 		 
-		 output = "Updated successfully";
+		 output = "Sponsor Details successfully updated ";
 		 
 	 }
 	 catch (Exception e){
 		 
-		 output = "Error while updating the item.";
+		 output = "Error while updating the Sponsor Details.";
 		 System.err.println(e.getMessage());
 	 
 	 }
@@ -217,7 +219,7 @@ public class Sponsor {
 	
 //**************************************************************delete*****************************************************************
 	
-	public String deleteItem(String buyer_id)
+	public String deleteSponsorDetails(String buyer_id)
 	 {
 	 
 		String output = "";
@@ -238,11 +240,11 @@ public class Sponsor {
 			preparedStmt.execute();
 			con.close();
 			
-			output = "Deleted successfully";
+			output = "Sponsor Details successfully deleted ";
 		}
 	 catch (Exception e) {
 		 
-		 output = "Error while deleting the item.";
+		 output = "Error while deleting the Sponsor Details.";
 		 System.err.println(e.getMessage());
 	 }
 		

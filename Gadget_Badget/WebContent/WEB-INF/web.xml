@@ -5,7 +5,6 @@
   <servlet>
 		 <servlet-name>Jersey Web Application</servlet-name>
  		 <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
- 		
   		<load-on-startup>1</load-on-startup>
   		
   </servlet>
@@ -16,6 +15,7 @@
  		<url-pattern>/OrderService/*</url-pattern>
  		<url-pattern>/ResearcherService/*</url-pattern>
  		<url-pattern>/SponsorService/*</url-pattern>
+ 		<url-pattern>/PaymentService/*</url-pattern>
  		
   </servlet-mapping>
   

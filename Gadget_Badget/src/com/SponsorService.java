@@ -27,7 +27,7 @@ public class SponsorService {
 	
 	public String readItems() 
 	{ 
-		return itemObj.readItems(); 
+		return itemObj.readSponsorDetails(); 
 	
 	}
 	
@@ -42,7 +42,7 @@ public class SponsorService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED) 
 	@Produces(MediaType.TEXT_PLAIN) 
 
-	public String insertItem(@FormParam("f_name") String f_name, 
+	public String insertSponsorDetails(@FormParam("f_name") String f_name, 
 						@FormParam("l_name") String l_name, 
 						@FormParam("company") String company, 
 						@FormParam("job") String job,
@@ -51,7 +51,7 @@ public class SponsorService {
 						@FormParam("city") String city) 
 	{ 
 	
-		String output = itemObj.insertItem(f_name, l_name, company, job, phone, mail, city); 
+		String output = itemObj.insertSponsorDetails(f_name, l_name, company, job, phone, mail, city); 
 		return output; 
  
 	}
@@ -69,7 +69,7 @@ public class SponsorService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 
-	public String updateItem(String itemData)
+	public String updateSponsorDetails(String itemData)
 	{
 
 		JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
@@ -83,7 +83,7 @@ public class SponsorService {
 		String mail      = itemObject.get("mail").getAsString();
 		String city      = itemObject.get("city").getAsString();
  	
-		String output    = itemObj.updateItem(buyer_id, f_name, l_name, company, job, phone, mail, city );
+		String output    = itemObj.updateSponsorDetails(buyer_id, f_name, l_name, company, job, phone, mail, city );
  
 		return output;
 		
@@ -102,14 +102,14 @@ public class SponsorService {
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
 
-	public String deleteItem(String itemData)
+	public String deleteSponsorDetails(String itemData)
 	{
 
 		Document doc = Jsoup.parse(itemData, "", Parser.xmlParser());
 
 		String buyer_id = doc.select("buyer_id").text();
 	
-		String output = itemObj.deleteItem(buyer_id);
+		String output = itemObj.deleteSponsorDetails(buyer_id);
 	
 		return output;
 	}
