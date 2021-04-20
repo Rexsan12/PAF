@@ -22,7 +22,7 @@ public class Researcher {
 	 return con;
 	}
 	
-public String insertResearcher(String resCode, String resName, String resEmail, String resLocation, String resCategory){
+public String insertResearcher(String resCode, String resName, String resProjCode, String resEmail, String resLocation){
 	    
 	    String output = "";
 		
@@ -34,16 +34,17 @@ public String insertResearcher(String resCode, String resName, String resEmail, 
 	         }
 	        
 	        // create a prepared statement
-	        String query = " insert into researcher(researcherCode, researcherName, email, location, category)" + " values (?, ?, ?, ?, ?)";
+	        String query = " insert into researcher(researcherCode, researcherName, projectCode, email, location)" + " values (?, ?, ?, ?, ?)";
 	        PreparedStatement preparedStmt = con.prepareStatement(query);
 
 	        // binding values
 	        //preparedStmt.setInt(1, 0);
 	        preparedStmt.setString(1, resCode);
 	        preparedStmt.setString(2, resName);
-	        preparedStmt.setString(3, resEmail);
-	        preparedStmt.setString(4, resLocation);
-	        preparedStmt.setString(5, resCategory);
+	        preparedStmt.setString(3, resProjCode);
+	        preparedStmt.setString(4, resEmail);
+	        preparedStmt.setString(5, resLocation);
+	        
 	        
 
 	        //execute the statement
@@ -77,7 +78,7 @@ public String insertResearcher(String resCode, String resName, String resEmail, 
 
 
 				// Prepare the html table to be displayed
-				output = "<table border=\"1\"><tr><th>Researcher Code</th><th>Researcher Name</th><th>Email</th><th>Location</th><th>Category</th><th>Update</th><th>Remove</th></tr>";
+				output = "<table border=\"1\"><tr><th>Researcher Code</th><th>Researcher Name</th><th>Project Code</th><th>Email</th><th>Location</th><th>Update</th><th>Remove</th></tr>";
 				String query = "select * from researcher";
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
@@ -88,16 +89,18 @@ public String insertResearcher(String resCode, String resName, String resEmail, 
 					String researcherID = Integer.toString(rs.getInt("researcherID"));
 					String researcherCode = rs.getString("researcherCode");
 					String researcherName = rs.getString("researcherName");
+					String projectCode = rs.getString("projectCode");
 					String email = rs.getString("email");
 					String location = rs.getString("location");
-					String category = rs.getString("category");
+					
 
 					// Add into the html table
 					output += "<tr><td>" + researcherCode + "</td>";
 					output += "<td>" + researcherName + "</td>";
+					output += "<td>" + projectCode + "</td>";
 					output += "<td>" + email + "</td>";
 					output += "<td>" + location + "</td>";
-					output += "<td>" + category + "</td>";
+					
 					
 					
 					// buttons
@@ -123,7 +126,7 @@ public String insertResearcher(String resCode, String resName, String resEmail, 
 	
 	
 	
-	public String updateResearcher(String resID, String resCode, String resName, String resEmail, String resLocation, String resCategory){
+	public String updateResearcher(String resID, String resCode, String resName,  String resProjCode, String resEmail, String resLocation){
 	    
 	    String output = "";
 
@@ -136,14 +139,14 @@ public String insertResearcher(String resCode, String resName, String resEmail, 
 	           
 	           // create a prepared statement
 
-	           String query = "UPDATE researcher SET researcherCode=?,researcherName=?,email=?,location=?,category=? WHERE researcherID=?";
+	           String query = "UPDATE researcher SET researcherCode=?,researcherName=?,projectCode=?,email=?,location=? WHERE researcherID=?";
 	           PreparedStatement preparedStmt = con.prepareStatement(query);
 	           //'researcherName','email','location','category'
 	           preparedStmt.setString(1, resCode);
 	           preparedStmt.setString(2, resName);
-	           preparedStmt.setString(3, resEmail);
-	           preparedStmt.setString(4, resLocation);
-	           preparedStmt.setString(5, resCategory);
+	           preparedStmt.setString(3, resProjCode);
+	           preparedStmt.setString(4, resEmail);
+	           preparedStmt.setString(5, resLocation);
 	           preparedStmt.setInt(6, Integer.parseInt(resID));
 
 	           // execute the statement

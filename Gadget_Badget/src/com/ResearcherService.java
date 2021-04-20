@@ -25,7 +25,7 @@ public class ResearcherService {
 	@GET
 	@Path("/")
 	@Produces(MediaType.TEXT_HTML)
-	public String readDoctor() {
+	public String readResearcher() {
 		
 		return resObj.readResearcher();
 		
@@ -38,12 +38,13 @@ public class ResearcherService {
 		@Produces(MediaType.TEXT_PLAIN)
 		public String insertResearcher( @FormParam("researcherCode") String researcherCode,
 									@FormParam("researcherName") String researcherName,
+									@FormParam("projectCode") String projectCode,
 									  @FormParam("email") String email,
-									  @FormParam("location") String location,
-									  @FormParam("category") String category)
+									  @FormParam("location") String location)
+									 
 									  
 		{
-				String output = resObj.insertResearcher(researcherCode, researcherName, email, location, category);
+				String output = resObj.insertResearcher(researcherCode, researcherName, projectCode, email, location);
 				return output;
 		}
 		
@@ -63,12 +64,13 @@ public class ResearcherService {
 			  String resID= resjObj.get("researcherID").getAsString();
 			  String resCode= resjObj.get("researcherCode").getAsString();
 			  String resName= resjObj.get("researcherName").getAsString();
+			  String resProjCode= resjObj.get("projectCode").getAsString();
 			  String resEmail= resjObj.get("email").getAsString();
 			  String resLocation= resjObj.get("location").getAsString();
-			  String resCategory= resjObj.get("category").getAsString();
 			  
 			  
-			  String output= resObj.updateResearcher(resID, resCode, resName, resEmail, resLocation, resCategory);
+			  
+			  String output= resObj.updateResearcher(resID, resCode, resName, resProjCode, resEmail, resLocation);
 			  return output;
 			  
 			  
