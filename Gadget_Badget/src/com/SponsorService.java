@@ -82,12 +82,15 @@ public class SponsorService {
 		String phone     = itemObject.get("phone").getAsString();
 		String mail      = itemObject.get("mail").getAsString();
 		String city      = itemObject.get("city").getAsString();
- 	
+	
 		String output    = itemObj.updateSponsorDetails(buyer_id, f_name, l_name, company, job, phone, mail, city );
- 
+		
 		return output;
 		
-}
+		}
+			
+		
+
 
 
 

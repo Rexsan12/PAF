@@ -180,8 +180,12 @@ public class Sponsor {
 			 
 			 return "Error while connecting to the database for updating.";
 			 }
-	 
+		 
+		 
+		
+			 
 		 String query = "UPDATE sponsor SET f_name=?, l_name=?, company=?, job=?, phone=?, mail=?, city=? WHERE buyer_id=?";
+
 		 PreparedStatement preparedStmt = con.prepareStatement(query);
 
 		 preparedStmt.setString(1, fname); 
@@ -192,19 +196,22 @@ public class Sponsor {
 		 preparedStmt.setString(6, mail); 
 		 preparedStmt.setString(7, city);;
 		 preparedStmt.setInt(8, Integer.parseInt(ID));
-	
+		
+				
+			 
 		 preparedStmt.execute();
 		 con.close();
-		 
+	
 		 output = "Sponsor Details successfully updated ";
-		 
-	 }
+		 }
+	
 	 catch (Exception e){
 		 
 		 output = "Error while updating the Sponsor Details.";
 		 System.err.println(e.getMessage());
 	 
 	 }
+	
 	 return output;
 	 } 
 	
@@ -219,7 +226,7 @@ public class Sponsor {
 	
 //**************************************************************delete*****************************************************************
 	
-	public String deleteSponsorDetails(String buyer_id)
+	public String deleteSponsorDetails(String ID)
 	 {
 	 
 		String output = "";
@@ -231,17 +238,19 @@ public class Sponsor {
 				return "Error while connecting to the database for deleting.";
 				}
 	 
+			
 			String query = "delete from sponsor where buyer_id=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 
-
-			preparedStmt.setInt(1, Integer.parseInt(buyer_id));
+			
+			preparedStmt.setInt(1, Integer.parseInt(ID));
 			
 			preparedStmt.execute();
 			con.close();
 			
 			output = "Sponsor Details successfully deleted ";
 		}
+			
 	 catch (Exception e) {
 		 
 		 output = "Error while deleting the Sponsor Details.";
