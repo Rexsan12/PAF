@@ -38,7 +38,7 @@ public class Project {
 	}
 
 
-public String insertProduct(String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
+public String insertProject(String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
 		
 		String output = ""; 
 		
@@ -52,7 +52,7 @@ public String insertProduct(String pro_code, String pro_category, String pro_nam
 				{
 					return "Error while connecting to the database for inserting";
 				}
-		
+				
 		
 				// create a prepared statement
 		
@@ -87,12 +87,14 @@ public String insertProduct(String pro_code, String pro_category, String pro_nam
 				System.err.println(e.getMessage());
 		 }
 		
+
+		
 		return output;	
 		
 	    } 
 
 
-public String readProducts() {
+public String readProjects() {
  
 	   String output = "";
 			
@@ -177,7 +179,7 @@ public String readProducts() {
 	}
 
 
-public String deleteProduct(String project_Id) {
+public String deleteProject(String project_Id) {
 
 	   String output = "";
 
@@ -222,7 +224,7 @@ public String deleteProduct(String project_Id) {
 
 
 
-public String updateProduct(String pro_Id, String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
+public String updateProject(String pro_Id, String pro_code, String pro_category, String pro_name, String pro_desc, String pro_price, String pro_count) {
 	
 	String output = "";
 	  

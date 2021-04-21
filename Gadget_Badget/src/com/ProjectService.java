@@ -26,7 +26,7 @@ public class ProjectService {
 	@Produces(MediaType.TEXT_HTML) 
 	public String readItems() 
 	 { 
-	 return itemObj.readProducts(); 
+	 return itemObj.readProjects(); 
 	 }
 
 	
@@ -44,10 +44,10 @@ public class ProjectService {
 		  @FormParam("no_of_projects") String no_of_projects)
 		
 		 {
-		  String output = itemObj.insertProduct(project_code, project_category, project_name, project_descrip, project_price, no_of_projects);
+		  String output = itemObj.insertProject(project_code, project_category, project_name, project_descrip, project_price, no_of_projects);
 		  return output;
 	     }
-	
+
 	
 	//for updating projects
 	 
@@ -70,7 +70,7 @@ public class ProjectService {
 		  String project_price = projectObject.get("project_price").getAsString();
 		  String no_of_projects = projectObject.get("no_of_projects").getAsString();
 		  
-		  String output = itemObj.updateProduct(project_Id, project_code, project_category, project_name, project_descrip, project_price, no_of_projects);
+		  String output = itemObj.updateProject(project_Id, project_code, project_category, project_name, project_descrip, project_price, no_of_projects);
 		  return output;
 	 }
 	 
@@ -90,7 +90,7 @@ public class ProjectService {
 	  
 	 //Read the value from the element <project_Id>
 	  String project_Id = doc.select("project_Id").text();
-	  String output = itemObj.deleteProduct(project_Id); 
+	  String output = itemObj.deleteProject(project_Id); 
 	  return output; 
 	 }
 	 
