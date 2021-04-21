@@ -9,7 +9,7 @@ public class Order {
 	String order_date;
 	String project_id;
 	String project_name;
-	String sponsor;
+	Integer sponsor_id;
 	String budget;
 	
 	//A common method to connect to the DB
@@ -33,7 +33,7 @@ public class Order {
 	 return con; 
 	 } 
 	
-	public String insertOrder(String order_date, String project_id, String project_name, String sponsor, String budget) 
+	public String insertOrder(String order_date, String project_id, String project_name, Integer sponsor_id, String budget) 
 	{ 
 		String output = ""; 
 		try
@@ -45,7 +45,7 @@ public class Order {
 				}
 			
 			// create a prepared statement
-			String query = " insert into orders(`Order_ID`,`Order_date`,`Project_ID`,`Project_name`,`Sponsor`,`Budget`)" + " values (?, ?, ?, ?, ?, ?)"; 
+			String query = " insert into orders(`Order_ID`,`Order_date`,`Project_ID`,`Project_name`,`Sponsor_ID`,`Budget`)" + " values (?, ?, ?, ?, ?, ?)"; 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			
 			// binding values
@@ -53,7 +53,7 @@ public class Order {
 			preparedStmt.setString(2, order_date);
 			preparedStmt.setString(3, project_id);
 			preparedStmt.setString(4, project_name);
-			preparedStmt.setString(5, sponsor);
+			preparedStmt.setInt(5, sponsor_id);
 			preparedStmt.setDouble(6, Double.parseDouble(budget));
 	 
 			// execute the statement
@@ -95,7 +95,7 @@ public class Order {
 				String order_date = rs.getString("Order_date");
 				String project_id = rs.getString("Project_ID"); 
 				String project_name = rs.getString("Project_name");
-				String sponsor = rs.getString("Sponsor");
+				String sponsor_id = Integer.toString(rs.getInt("Sponsor_ID"));
 				String budget = Double.toString(rs.getDouble("Budget"));
 				
 				// Add into the html table
@@ -103,7 +103,7 @@ public class Order {
 				output += "<td>" + order_date + "</td>";
 				output += "<td>" + project_id + "</td>"; 
 				output += "<td>" + project_name + "</td>"; 
-				output += "<td>" + sponsor + "</td>";
+				output += "<td>" + sponsor_id + "</td>";
 				output += "<td>" + budget + "</td>";
 				
 				// buttons
@@ -126,7 +126,7 @@ public class Order {
 	 return output; 
 	 } 
 	
-	public String updateOrder(String orderID, String order_date, String project_id, String project_name, String sponsor, String budget)
+	public String updateOrder(String orderID, String order_date, String project_id, String project_name, String sponsor_id, String budget)
 	{
 		String output = ""; 
 		try
@@ -138,14 +138,14 @@ public class Order {
 			} 
 			
 			// create a prepared statement
-			String query = "UPDATE orders SET Order_date=?,Project_ID=?,Project_name=?,Sponsor=?,Budget=? WHERE Order_ID=?"; 
+			String query = "UPDATE orders SET Order_date=?,Project_ID=?,Project_name=?,Sponsor_ID=?,Budget=? WHERE Order_ID=?"; 
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			
 			// binding values
 			preparedStmt.setString(1, order_date);
 			preparedStmt.setString(2, project_id);
 			preparedStmt.setString(3, project_name);
-			preparedStmt.setString(4, sponsor);
+			preparedStmt.setInt(4, Integer.parseInt(sponsor_id));
 			preparedStmt.setDouble(5, Double.parseDouble(budget));
 			preparedStmt.setInt(6, Integer.parseInt(orderID));
 			

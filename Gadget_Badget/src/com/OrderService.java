@@ -33,10 +33,10 @@ public class OrderService {
 	public String insertOrder(@FormParam("Order_date") String order_date,
 	 @FormParam("Project_ID") String project_id, 
 	 @FormParam("Project_name") String project_name,
-	 @FormParam("Sponsor") String sponsor,
+	 @FormParam("Sponsor_ID") Integer sponsor_id,
 	 @FormParam("Budget") String budget) 
 	{ 
-	 String output = orderObj.insertOrder( order_date, project_id, project_name, sponsor, budget); 
+	 String output = orderObj.insertOrder( order_date, project_id, project_name, sponsor_id, budget); 
 	return output; 
 	}
 	
@@ -54,10 +54,10 @@ public class OrderService {
 	 String order_date = orderObject.get("Order_date").getAsString();
 	 String project_id = orderObject.get("Project_ID").getAsString(); 
 	 String project_name = orderObject.get("Project_name").getAsString(); 
-	 String sponsor = orderObject.get("Sponsor").getAsString();
+	 String sponsor_id = orderObject.get("Sponsor_ID").getAsString();
 	 String budget = orderObject.get("Budget").getAsString();
 	 
-	 String output = orderObj.updateOrder( orderID, order_date, project_id, project_name, sponsor, budget); 
+	 String output = orderObj.updateOrder( orderID, order_date, project_id, project_name, sponsor_id, budget); 
 	return output; 
 	}
 	
